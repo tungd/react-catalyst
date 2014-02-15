@@ -5,7 +5,12 @@ Collection of helpers developed for React.
 
 ## LinkedStateMixin
 
-Alternate to `React.addons.LinkedStateMixin`, with support for deep path-based state access.
+Alternate to `React.addons.LinkedStateMixin`, with support for deep path-based
+state access.
+
+- StackOverflow question: <http://stackoverflow.com/questions/21057219/react-js-2-way-bindings-two-levels-deep-path-in-valuelink/21058282#21058282>
+- My original Gist: <https://gist.github.com/tungd/8367229>
+- Demo on JSFiddle: <http://jsfiddle.net/uHm6k/3/>
 
 Example:
 
@@ -32,7 +37,7 @@ Quote from [Communicate Between Components](http://facebook.github.io/react/tips
 > in componentDidMount(), unsubscribe in componentWillUnmount(), and when you
 > receive an event, call setState().
 
-This mixin provide three methods:
+This mixin provides three methods:
 
 ### publish(channel, data)
 
@@ -48,7 +53,7 @@ channel.
 Convenient wrapper to `subscribe/setState` combo.
 
 All the listener callbacks are automagically unsubscribed when component
-unmount.
+is unmounted.
 
 ```js
 var WithMessageBus = React.createClass({
