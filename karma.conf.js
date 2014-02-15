@@ -15,6 +15,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'src/*.js',
+      'test/react-0.8.0.js',
       'test/*.js'
     ],
 
