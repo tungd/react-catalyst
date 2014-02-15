@@ -1,23 +1,3 @@
-/**
- * Catalyst.LinkedStateMixin
- *
- * LinkedState for Facebook's React UI, with support for
- * deep path state access.
- *
- * Author: Tung Dao <me@tungdao.com>
- *
- * Usage:
- *
- * var WithLink = React.createClass({
- *   mixins: [Catalyst.LinkedStateMixin],
- *   getInitialState: function() {
- *     return { values: [{ text: 'Hello!' }] };
- *   },
- *   render: function() {
- *     return <input type="text" valueLink={this.linkState('values.0.text')} />;
- *   }
- * });
- */
 
 window.Catalyst = window.Catalyst || {};
 
