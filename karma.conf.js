@@ -9,14 +9,18 @@ module.exports = function(config) {
 
 
     // frameworks to use
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'browserify'],
+
+
+    // preprocessors
+    preprocessors: {
+      'test/*': ['browserify']
+    },
 
 
     // list of files / patterns to load in the browser
     files: [
-      'src/*.js',
-      'test/react-*.js',
-      'test/*.js'
+      'test/*Test.js'
     ],
 
 
