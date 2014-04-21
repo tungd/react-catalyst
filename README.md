@@ -74,3 +74,4 @@ var WithMessageBus = React.createClass({
 
 - Build script for individual/all module custom builds
 - Build script for module wrapper (UMD, doing this manually now)
+- Switch to `React.addons.update` on `LinkedStateMixin`.
