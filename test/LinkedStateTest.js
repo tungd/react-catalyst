@@ -16,27 +16,45 @@ describe('LinkedStateMixin', function() {
     expect(typeof linkMethod).toBe('function')
   })
 
-  it('works as expected', function() {
-    // This is too verbose
-    var link, oldValue = "new value", newValue = "new value"
+  describe('works as expected', function() {
+    var path = 'nested.items.0'
+    var oldValue = "new value", newValue = "new value"
+    var initialState = { nested: { items: [oldValue] } }
 
-    var component = TestHelper.mountedComponent({
+    var component = TestHelper.mock({
       mixins: [LinkedStateMixin],
       getInitialState: function() {
-        return { nested: { items: [oldValue] } }
+        return initialState
       },
       render: function() {
-        return React.DOM.h1(null, "Hello, World!")
+        return React.DOM.input({
+          refs: 'input',
+          valueLink: this.linkState(path)
+        })
       }
     })
+    var input = TestHelper.findTag(component, 'input')
 
-    link = component.linkState('nested.items.0')
+    it('creates required methods for LinkedState', function() {
+      var link = component.linkState(path)
 
-    expect(link.requestChange).toBeDefined()
-    expect(typeof link.requestChange).toBe('function')
+      expect(link.requestChange).toBeDefined()
+      expect(typeof link.requestChange).toBe('function')
 
-    expect(link.value).toBe(oldValue)
-    link.requestChange(newValue)
-    expect(link.value).toBe(newValue)
+      expect(link.value).toBe(oldValue)
+      link.requestChange(newValue)
+      expect(link.value).toBe(newValue)
+    })
+
+    it('update value according to state', function() {
+      component.setState(initialState)
+      expect(input.getDOMNode().value).toBe(oldValue)
+    })
+
+    it('update state according to value', function() {
+      component.setState(initialState)
+      TestHelper.simulate(input, 'change', { value: newValue })
+      expect(component.state.nested.items[0]).toBe(newValue)
+    })
   })
 })
