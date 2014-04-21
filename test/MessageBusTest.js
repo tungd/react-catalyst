@@ -52,7 +52,16 @@ describe('MessageBusMixin', function() {
     })
   })
 
-  describe('messaging', function() {
+  describe('works as expected', function() {
+    // Include this redundant component because I'am not sure about the use of
+    // `this` in the original mixin object
+    var other = TestHelper.mock({
+      mixins: [MessageBusMixin],
+      render: function() {
+        return DOM.span(null, "Hello, World!")
+      }
+    })
+
     var publisher = TestHelper.mock({
       mixins: [MessageBusMixin],
       render: function() {
@@ -79,6 +88,15 @@ describe('MessageBusMixin', function() {
       var value = 'Hello, World!'
       publisher.publish('test', value)
       expect(subscriber.state.data).toEqual(value)
+      expect(other.__subscriptions).toBeUndefined()
+    })
+
+    it('unsubscribe on unmount', function() {
+      var parent = subscriber.getDOMNode().parentNode
+      var unmounted = React.unmountComponentAtNode(parent)
+
+      expect(unmounted).toBe(true)
+      expect(subscriber.__subscriptions.test).toBeUndefined()
     })
   })
 })

@@ -28,7 +28,6 @@ describe('LinkedStateMixin', function() {
       },
       render: function() {
         return React.DOM.input({
-          refs: 'input',
           valueLink: this.linkState(path)
         })
       }
