@@ -1,5 +1,7 @@
+/*jshint asi:true*/
 
 var DOM = React.DOM
+var Test = React.addons.TestUtils
 
 describe('Catalyst', function() {
   describe('LinkedStateMixin', function() {
@@ -18,7 +20,7 @@ describe('Catalyst', function() {
       // This is too verbose
       var link, oldValue = "new value", newValue = "new value"
 
-      var component = React.createClass({
+      var component = Test.renderIntoDocument(React.createClass({
         mixins: [Catalyst.LinkedStateMixin],
         getInitialState: function() {
           return { nested: { items: [oldValue] } }
@@ -26,9 +28,7 @@ describe('Catalyst', function() {
         render: function() {
           return DOM.h1(null, "Hello, World!")
         }
-      })()
-
-      React.renderComponent(component, document.createElement('div'))
+      })())
 
       link = component.linkState('nested.items.0')
 
