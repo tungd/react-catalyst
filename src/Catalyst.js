@@ -1,2 +1,2 @@
 
-exports.LinkedStateMixin = require('catalyst/LinkedStateMixin');
+exports.LinkedStateMixin = require('./catalyst/LinkedStateMixin');
