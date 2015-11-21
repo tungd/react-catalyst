@@ -1,7 +1,7 @@
 {
   "name": "react-catalyst",
-  "version": "0.3.0",
-  "main" : "src/Catalyst.js",
+  "version": "2.0.0",
+  "main": "src/Catalyst.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/tungd/react-catalyst.git"
@@ -11,16 +11,18 @@
     "email": "me@tungdao.com",
     "url": "http://tungdao.com"
   },
-  "devDependencies": {
-    "browserify": "^3.44.1",
-    "karma": "~0.12.9",
-    "karma-browserify": "^0.2.0",
-    "karma-chrome-launcher": "~0.1.3",
-    "karma-firefox-launcher": "~0.1.3",
-    "karma-jasmine": "~0.1.5"
-  },
+  "license": "BSD-3-Clause",
   "dependencies": {
-    "envify": "^1.2.1",
-    "react": "^0.10.0"
+    "react": "^0.14.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.2.1",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babel-register": "^6.2.0",
+    "mocha": "^2.3.4"
+  },
+  "scripts": {
+    "test": "mocha --require babel-core/register --colors"
   }
 }

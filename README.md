@@ -3,6 +3,12 @@
 
 Collection of helpers developed for React.
 
+## ES6 and future plan
+
+React will not support mixins for ES6-class-based components, and the React team
+is working on a better solution for the use-case.
+
+
 ## LinkedStateMixin
 
 Alternate to `React.addons.LinkedStateMixin`, with support for deep path-based
