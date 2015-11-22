@@ -6,15 +6,16 @@ let Mixin = (type) => {
 
 Mixin.with = (base, ...mixins) => {
   mixins.forEach((mixin) => {
-    // console.log(typeof mixin);
-    // console.log(Object.getOwnPropertyNames(mixin));
+    // Babel compiles ES6 classes into constructor function
+    if (typeof mixin === 'function' && mixin.hasOwnProperty('prototype')) {
+      mixin = mixin.prototype;
+    }
 
     if (typeof mixin === 'object') {
       Object.getOwnPropertyNames(mixin).forEach((method) => {
         base.prototype[method] = mixin[method];
       });
     }
-
   });
 
   return base;

@@ -20,29 +20,46 @@ describe('Mixin', () => {
       _.equal(typeof Mixin.with, 'function');
     });
 
-    describe('assigns the method to new component', () => {
-      class TestMixinComponent extends React.Component {
-        render() {
-          return <span>{this.message()}</span>;
-        }
-      }
-
-      it('from object mixin', () => {
-        var TestMixinMethod = {
+    describe('assigns mixed-in method to the component', () => {
+      it('from mixin object', () => {
+        var MixinObject = {
           message: function() {
             return "MESSAGE";
           }
         };
 
+        class TestMixinComponent extends React.Component {
+          render() {
+            return <span>{this.message()}</span>;
+          }
+        }
+
         var element = React.createElement(
-          Mixin(TestMixinComponent).with(TestMixinMethod),
+          Mixin(TestMixinComponent).with(MixinObject),
           null, null);
 
         _.ok(/MESSAGE/.test(ReactDOMServer.renderToString(element)));
       });
 
-      it('from class mixin', () => {
+      it('from mixin class', () => {
+        class MixinClass {
+          message() {
+            return "MESSAGE";
+          }
+        };
 
+        class TestMixinComponent extends React.Component {
+          render() {
+            return <span>{this.message()}</span>;
+          }
+        }
+
+        var element = React.createElement(
+          Mixin(TestMixinComponent).with(MixinClass),
+          null, null);
+
+        console.log(ReactDOMServer.renderToString(element));
+        _.ok(/MESSAGE/.test(ReactDOMServer.renderToString(element)));
       });
     });
   });
