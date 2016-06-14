@@ -1,6 +1,6 @@
 {
   "name": "react-catalyst",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "main" : "src/Catalyst.js",
   "repository": {
     "type": "git",
